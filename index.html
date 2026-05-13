@@ -107,6 +107,251 @@
             margin-top: 10px;
         }
 
+        /* ===== Animated trajectory figure ===== */
+        .figure-card {
+            overflow: hidden;
+        }
+
+        .figure-intro {
+            font-size: 18px;
+            color: #cbd5e1;
+            margin-bottom: 20px;
+        }
+
+        .trajectory-wrap {
+            margin-top: 18px;
+            padding: 18px;
+            border: 1px solid rgba(125, 211, 252, 0.12);
+            border-radius: 20px;
+            background: linear-gradient(180deg, rgba(15,23,42,0.88) 0%, rgba(9,15,30,0.96) 100%);
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02);
+        }
+
+        .trajectory-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        .trajectory-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 0;
+        }
+
+        .trajectory-subtitle {
+            font-size: 14px;
+            color: #94a3b8;
+            margin: 0;
+        }
+
+        .trajectory-btn {
+            background: transparent;
+            color: #7dd3fc;
+            border: 1px solid rgba(125, 211, 252, 0.35);
+            border-radius: 999px;
+            padding: 10px 14px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: 0.25s ease;
+            white-space: nowrap;
+        }
+
+        .trajectory-btn:hover {
+            background: rgba(125, 211, 252, 0.08);
+            border-color: rgba(125, 211, 252, 0.7);
+        }
+
+        .trajectory-svg {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 16px;
+            background: #f8fafc;
+        }
+
+        .trajectory-caption {
+            margin-top: 16px;
+            font-size: 16px;
+            line-height: 1.8;
+            color: #dbe7f3;
+        }
+
+        .trajectory-conclusion {
+            margin-top: 18px;
+            padding: 14px 16px;
+            border-left: 3px solid #7dd3fc;
+            background: rgba(125, 211, 252, 0.06);
+            color: #e2e8f0;
+            border-radius: 10px;
+            font-size: 17px;
+            line-height: 1.7;
+            opacity: 0;
+            transform: translateY(8px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .trajectory-conclusion.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .path-animated,
+        .path-animated-2 {
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        #attractor-path {
+            stroke: #1f2937;
+            stroke-width: 5;
+        }
+
+        #lcdm-path {
+            stroke: #6b7280;
+            stroke-width: 3;
+            stroke-dasharray: 8 8;
+            opacity: 0.9;
+        }
+
+        .axis-line {
+            stroke: #9ca3af;
+            stroke-width: 1.5;
+        }
+
+        .grid-line {
+            stroke: #e5e7eb;
+            stroke-width: 1;
+            stroke-dasharray: 3 6;
+        }
+
+        .ref-line {
+            stroke: #d1d5db;
+            stroke-width: 1.2;
+            stroke-dasharray: 4 6;
+        }
+
+        .axis-text {
+            fill: #374151;
+            font-size: 16px;
+            font-family: Arial, sans-serif;
+        }
+
+        .small-label {
+            fill: #6b7280;
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+        }
+
+        .title-text {
+            fill: #111827;
+            font-size: 26px;
+            font-weight: 700;
+            font-family: Georgia, "Times New Roman", serif;
+        }
+
+        .legend-text {
+            fill: #111827;
+            font-size: 15px;
+            font-family: Arial, sans-serif;
+        }
+
+        .note-box {
+            fill: rgba(255,255,255,0.92);
+            stroke: #d1d5db;
+            stroke-width: 1;
+        }
+
+        .note-text {
+            fill: #374151;
+            font-size: 15px;
+            font-family: Georgia, "Times New Roman", serif;
+            font-style: italic;
+        }
+
+        .note-text-bold {
+            fill: #111827;
+            font-size: 15px;
+            font-family: Georgia, "Times New Roman", serif;
+            font-style: italic;
+            font-weight: 700;
+        }
+
+        .milestone,
+        .note-group,
+        .guide-label {
+            opacity: 0;
+            transition: opacity 0.7s ease;
+        }
+
+        .milestone.show,
+        .note-group.show,
+        .guide-label.show {
+            opacity: 1;
+        }
+
+        .moving-dot {
+            fill: #111827;
+            stroke: #ffffff;
+            stroke-width: 2;
+        }
+
+        .guide-marker {
+            fill: #6b7280;
+        }
+
+        /* Pulsing "We are here" marker */
+        .pulse-ring {
+            fill: none;
+            stroke: #ef4444;
+            stroke-width: 2;
+            opacity: 0;
+            transform-origin: 335.30px 314px;
+        }
+
+        #we-are-here-group.show .pulse-ring {
+            opacity: 1;
+            animation: pulseRing 1.8s ease-out infinite;
+        }
+
+        #we-are-here-dot {
+            fill: #ef4444;
+            opacity: 0;
+        }
+
+        #we-are-here-group.show #we-are-here-dot {
+            opacity: 1;
+        }
+
+        @keyframes pulseRing {
+            0%   { r: 8px;  opacity: 0.8; }
+            100% { r: 22px; opacity: 0; }
+        }
+
+        @media (max-width: 700px) {
+            .figure-intro {
+                font-size: 16px;
+            }
+
+            .trajectory-title {
+                font-size: 18px;
+            }
+
+            .trajectory-subtitle {
+                font-size: 13px;
+            }
+
+            .trajectory-caption,
+            .trajectory-conclusion {
+                font-size: 15px;
+            }
+        }
+
         @media (max-width: 640px) {
             .container {
                 padding: 38px 16px 52px 16px;
@@ -187,6 +432,183 @@
             </p>
         </section>
 
+        <!-- ===== ANIMATED FIGURE BLOCK ===== -->
+        <section class="card figure-card">
+            <h2>Animated Figure</h2>
+
+            <p class="figure-intro">
+                This animated figure presents the proposed trajectory of the matter fraction
+                across cosmic time under the attractor hypothesis.
+            </p>
+
+            <div class="trajectory-wrap">
+                <div class="trajectory-header">
+                    <div>
+                        <p class="trajectory-title">The Story of the Universe in One Graph</p>
+                        <p class="trajectory-subtitle">Animated scientific visualization of the proposed cosmic trajectory</p>
+                    </div>
+
+                    <button class="trajectory-btn" id="replayTrajectory">
+                        ↺ Replay animation
+                    </button>
+                </div>
+
+                <svg class="trajectory-svg" id="trajectorySvg" viewBox="0 0 900 540" xmlns="http://www.w3.org/2000/svg">
+                    <!-- background -->
+                    <rect x="0" y="0" width="900" height="540" fill="#f8fafc"/>
+
+                    <!-- title -->
+                    <text x="450" y="42" text-anchor="middle" class="title-text">
+                        The Story of the Universe in One Graph
+                    </text>
+
+                    <!-- grid -->
+                    <line x1="80" y1="100" x2="820" y2="100" class="grid-line"/>
+                    <line x1="80" y1="185" x2="820" y2="185" class="grid-line"/>
+                    <line x1="80" y1="270" x2="820" y2="270" class="grid-line"/>
+                    <line x1="80" y1="355" x2="820" y2="355" class="grid-line"/>
+                    <line x1="80" y1="440" x2="820" y2="440" class="grid-line"/>
+
+                    <!-- axes -->
+                    <line x1="80" y1="100" x2="80" y2="440" class="axis-line"/>
+                    <line x1="80" y1="440" x2="820" y2="440" class="axis-line"/>
+
+                    <!-- vertical guide lines -->
+                    <line x1="196.55" y1="100" x2="196.55" y2="440" class="grid-line"/>
+                    <line x1="246.50" y1="100" x2="246.50" y2="440" class="grid-line"/>
+                    <line x1="335.30" y1="100" x2="335.30" y2="440" class="grid-line"/>
+                    <line x1="635.00" y1="100" x2="635.00" y2="440" class="grid-line"/>
+
+                    <!-- horizontal reference lines -->
+                    <line x1="80" y1="213.3" x2="820" y2="213.3" class="ref-line"/>
+                    <line x1="80" y1="263.2" x2="820" y2="263.2" class="ref-line"/>
+                    <line x1="80" y1="419.6" x2="820" y2="419.6" class="ref-line"/>
+
+                    <!-- right-side guide labels (revealed on scroll) -->
+                    <text x="760" y="208" class="small-label guide-label" id="label-r23">R = 2/3</text>
+                    <text x="742" y="258" class="small-label guide-label" id="label-rc">R₍c₎ = 0.52</text>
+                    <text x="760" y="414" class="small-label guide-label" id="label-rstar">R* ≈ 0.06</text>
+
+                    <!-- y-axis tick labels -->
+                    <text x="62" y="446" text-anchor="end" class="axis-text">0.0</text>
+                    <text x="62" y="361" text-anchor="end" class="axis-text">0.25</text>
+                    <text x="62" y="276" text-anchor="end" class="axis-text">0.50</text>
+                    <text x="62" y="191" text-anchor="end" class="axis-text">0.75</text>
+                    <text x="62" y="106" text-anchor="end" class="axis-text">1.0</text>
+
+                    <!-- x-axis tick labels -->
+                    <text x="80"    y="466" text-anchor="middle" class="axis-text">0</text>
+                    <text x="172.5" y="466" text-anchor="middle" class="axis-text">5</text>
+                    <text x="265"   y="466" text-anchor="middle" class="axis-text">10</text>
+                    <text x="357.5" y="466" text-anchor="middle" class="axis-text">15</text>
+                    <text x="450"   y="466" text-anchor="middle" class="axis-text">20</text>
+                    <text x="542.5" y="466" text-anchor="middle" class="axis-text">25</text>
+                    <text x="635"   y="466" text-anchor="middle" class="axis-text">30</text>
+                    <text x="727.5" y="466" text-anchor="middle" class="axis-text">35</text>
+                    <text x="820"   y="466" text-anchor="middle" class="axis-text">40</text>
+
+                    <!-- axis labels -->
+                    <text x="450" y="510" text-anchor="middle" class="axis-text">
+                        Time since Big Bang (billion years)
+                    </text>
+                    <text x="28" y="270" transform="rotate(-90 28 270)" text-anchor="middle" class="axis-text">
+                        Matter fraction R = ρm / ρtotal
+                    </text>
+
+                    <!-- legend box -->
+                    <rect x="400" y="68" width="340" height="46" fill="rgba(255,255,255,0.92)" stroke="#d1d5db" stroke-width="1" rx="6"/>
+                    <line x1="414" y1="84" x2="444" y2="84" stroke="#1f2937" stroke-width="4"/>
+                    <text x="454" y="89" class="legend-text">Attractor hypothesis (coupled → stabilization)</text>
+                    <line x1="414" y1="102" x2="444" y2="102" stroke="#6b7280" stroke-width="3" stroke-dasharray="8 8"/>
+                    <text x="454" y="107" class="legend-text">ΛCDM (no coupling → heat death)</text>
+
+                    <!-- LCDM: natural smooth continuation → matter fraction falls to ~0 -->
+                    <path id="lcdm-path" class="path-animated-2"
+                        d="M 80 117
+                           L 196.55 213.3
+                           L 246.50 263.2
+                           C 296.5 315, 580 438, 820 438" />
+
+                    <!-- Attractor: ONE smooth curve — coupling gradually slows decline → R* -->
+                    <path id="attractor-path" class="path-animated"
+                        d="M 80 117
+                           L 196.55 213.3
+                           L 246.50 263.2
+                           C 296.5 313, 580 419.6, 820 419.6" />
+
+                    <!-- Moving dot (follows attractor path) -->
+                    <circle id="moving-dot" class="moving-dot" cx="80" cy="117" r="6"/>
+
+                    <!-- Milestone dots -->
+                    <circle id="m1" class="milestone guide-marker" cx="80"     cy="117"   r="5"/>
+                    <circle id="m2" class="milestone guide-marker" cx="196.55" cy="213.3" r="5"/>
+                    <circle id="m3" class="milestone guide-marker" cx="246.50" cy="263.2" r="5"/>
+                    <circle id="m4" class="milestone guide-marker" cx="335.30" cy="314"   r="5"/>
+                    <circle id="m5" class="milestone guide-marker" cx="635"    cy="419.6" r="5"/>
+
+                    <!-- "We are here" pulsing marker -->
+                    <g id="we-are-here-group" class="milestone">
+                        <circle class="pulse-ring" cx="335.30" cy="314" r="8"/>
+                        <circle id="we-are-here-dot" cx="335.30" cy="314" r="6"/>
+                    </g>
+
+                    <!-- Annotation: Acceleration begins -->
+                    <g id="note1" class="note-group">
+                        <rect x="95" y="140" width="165" height="52" class="note-box" rx="8" ry="8"/>
+                        <text x="106" y="160" class="note-text">Acceleration begins</text>
+                        <text x="106" y="178" class="note-text-bold">R = 2/3, 6.3 Gyr</text>
+                    </g>
+
+                    <!-- Annotation: Coupling activates — paths fork here -->
+                    <g id="note2" class="note-group">
+                        <rect x="112" y="258" width="186" height="72" class="note-box" rx="8" ry="8" stroke="#7dd3fc" stroke-width="1.5"/>
+                        <text x="123" y="277" class="note-text">Paths fork — coupling activates</text>
+                        <text x="123" y="295" class="note-text-bold">R₍c₎ = 0.52, ~9 Gyr</text>
+                        <text x="123" y="314" class="note-text" style="fill:#6b7280;font-size:13px;">RLDS bends → attractor</text>
+                        <text x="123" y="329" class="note-text" style="fill:#6b7280;font-size:13px;">ΛCDM continues → 0</text>
+                    </g>
+
+                    <!-- Annotation: We are here — marker on smooth RLDS curve -->
+                    <g id="note3" class="note-group">
+                        <rect x="350" y="248" width="160" height="56" class="note-box" rx="8" ry="8" stroke="#ef4444"/>
+                        <text x="362" y="268" class="note-text" style="fill:#b91c1c;">We are here</text>
+                        <text x="362" y="287" class="note-text-bold" style="fill:#991b1b;">R ≈ 0.31, 13.8 Gyr</text>
+                    </g>
+
+                    <!-- ΛCDM position at 13.8 Gyr — small gray marker -->
+                    <circle id="m-lcdm-now" class="milestone" cx="335.30" cy="318" r="4" fill="#9ca3af" stroke="#ffffff" stroke-width="1.5"/>
+
+                    <!-- Annotation: Attractor reached -->
+                    <g id="note4" class="note-group">
+                        <rect x="628" y="330" width="168" height="58" class="note-box" rx="8" ry="8"/>
+                        <text x="640" y="351" class="note-text">Attractor reached</text>
+                        <text x="640" y="370" class="note-text-bold">R* ≈ 0.06, ~30 Gyr</text>
+                    </g>
+
+                    <!-- Footer attribution -->
+                    <text x="610" y="495" class="small-label">
+                        Based on RLDS framework (Kubanski, 2026)
+                    </text>
+                </svg>
+
+                <p class="trajectory-caption">
+                    The solid curve shows the proposed attractor trajectory of the matter fraction
+                    across cosmic time. The dashed curve shows the standard ΛCDM expectation,
+                    in which matter continues to decline toward zero. The two curves are identical
+                    until the coupling threshold R₍c₎ ≈ 0.52 (~9 Gyr), after which they diverge.
+                    We currently sit on the already-diverged RLDS trajectory; ΛCDM would predict
+                    a slightly lower matter fraction today.
+                </p>
+
+                <div class="trajectory-conclusion" id="trajectoryConclusion">
+                    <strong>Not a constant, but a regime.</strong>
+                    The central claim is that the observed cosmological constant is not a fundamental number,
+                    but the observable face of a regulated late-time dynamical regime.
+                </div>
+            </div>
+        </section>
+        <!-- ===== END ANIMATED FIGURE BLOCK ===== -->
+
         <section class="card">
             <h2>Research Interests</h2>
 
@@ -265,5 +687,150 @@
         </section>
 
     </main>
+
+    <script>
+    (function () {
+        const svg         = document.getElementById("trajectorySvg");
+        if (!svg) return;
+
+        const attractorPath  = document.getElementById("attractor-path");
+        const lcdmPath       = document.getElementById("lcdm-path");
+        const movingDot      = document.getElementById("moving-dot");
+        const replayBtn      = document.getElementById("replayTrajectory");
+        const conclusion     = document.getElementById("trajectoryConclusion");
+
+        const milestoneIds   = ["m1", "m2", "m3", "m4", "m5", "m-lcdm-now"];
+        const noteIds        = ["note1", "note2", "note3", "note4"];
+        const guideIds       = ["label-r23", "label-rc", "label-rstar"];
+        const weAreHere      = document.getElementById("we-are-here-group");
+
+        const milestones  = milestoneIds.map(id => document.getElementById(id));
+        const notes       = noteIds.map(id => document.getElementById(id));
+        const guides      = guideIds.map(id => document.getElementById(id));
+
+        let started = false;
+
+        /* ── Ease-in-out cubic ── */
+        function easeInOutCubic(t) {
+            return t < 0.5
+                ? 4 * t * t * t
+                : 1 - Math.pow(-2 * t + 2, 3) / 2;
+        }
+
+        /* ── Prepare path for dash-offset animation ── */
+        function preparePath(path) {
+            const len = path.getTotalLength();
+            path.style.strokeDasharray  = len;
+            path.style.strokeDashoffset = len;
+            return len;
+        }
+
+        const attractorLength = preparePath(attractorPath);
+        const lcdmLength      = preparePath(lcdmPath);
+
+        /* ── Reset all animated elements ── */
+        function resetAnimation() {
+            attractorPath.style.transition = "none";
+            lcdmPath.style.transition      = "none";
+            attractorPath.style.strokeDashoffset = attractorLength;
+            lcdmPath.style.strokeDashoffset      = lcdmLength;
+
+            movingDot.setAttribute("cx", "80");
+            movingDot.setAttribute("cy", "117");
+
+            milestones.forEach(el  => el && el.classList.remove("show"));
+            notes.forEach(el       => el && el.classList.remove("show"));
+            guides.forEach(el      => el && el.classList.remove("show"));
+            weAreHere && weAreHere.classList.remove("show");
+            conclusion.classList.remove("show");
+        }
+
+        /* ── Animate a stroke-dashoffset path ── */
+        function animatePath(path, length, duration, delay) {
+            const startTime = performance.now() + delay;
+            function frame(now) {
+                if (now < startTime) { requestAnimationFrame(frame); return; }
+                const t        = Math.min((now - startTime) / duration, 1);
+                const eased    = easeInOutCubic(t);
+                path.style.strokeDashoffset = length * (1 - eased);
+                if (t < 1) requestAnimationFrame(frame);
+            }
+            requestAnimationFrame(frame);
+        }
+
+        /* ── Animate the moving dot along attractor path ── */
+        function animateDot(path, duration, delay) {
+            const length    = path.getTotalLength();
+            const startTime = performance.now() + delay;
+            function frame(now) {
+                if (now < startTime) { requestAnimationFrame(frame); return; }
+                const t     = Math.min((now - startTime) / duration, 1);
+                const eased = easeInOutCubic(t);
+                const pt    = path.getPointAtLength(length * eased);
+                movingDot.setAttribute("cx", pt.x);
+                movingDot.setAttribute("cy", pt.y);
+                if (t < 1) requestAnimationFrame(frame);
+            }
+            requestAnimationFrame(frame);
+        }
+
+        /* ── Helper: reveal an element after a delay ── */
+        function showLater(el, delay) {
+            setTimeout(() => { if (el) el.classList.add("show"); }, delay);
+        }
+
+        /* ── Run the full animation sequence ── */
+        function runAnimation() {
+            resetAnimation();
+
+            /* paths */
+            animatePath(attractorPath, attractorLength, 6500, 300);
+            animateDot(attractorPath,                   6500, 300);
+            animatePath(lcdmPath,      lcdmLength,      6500, 300); /* parallel from start */
+
+            /* milestone dots */
+            showLater(milestones[0], 500);
+            showLater(milestones[1], 1600);
+            showLater(milestones[2], 2500);
+            showLater(milestones[3], 3800);
+            showLater(milestones[4], 6200);
+            showLater(milestones[5], 3700); /* ΛCDM position at 13.8 Gyr */
+
+            /* "We are here" pulsing dot */
+            showLater(weAreHere, 3800);
+
+            /* annotation notes */
+            showLater(notes[0], 1100);
+            showLater(notes[1], 2300);
+            showLater(notes[2], 3700);
+            showLater(notes[3], 6100);
+
+            /* right-side reference labels */
+            showLater(guides[0], 1500);
+            showLater(guides[1], 2500);
+            showLater(guides[2], 6200);
+
+            /* concluding statement */
+            showLater(conclusion, 7600);
+        }
+
+        /* ── Trigger on scroll into view ── */
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !started) {
+                    started = true;
+                    runAnimation();
+                }
+            });
+        }, { threshold: 0.35 });
+
+        observer.observe(svg);
+
+        /* ── Replay button ── */
+        replayBtn.addEventListener("click", function () {
+            runAnimation();
+        });
+    })();
+    </script>
 </body>
 </html>
