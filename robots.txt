@@ -1,0 +1,8 @@
+# robots.txt for research.kubanski.pro
+# Allow all well-behaved crawlers to index everything
+
+User-agent: *
+Allow: /
+
+# Location of the XML sitemap
+Sitemap: https://research.kubanski.pro/sitemap.xml
