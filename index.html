@@ -390,7 +390,7 @@
             Research by Aleksander Kubanski
         </p>
 
-        <p class="intro-line">
+        <p class="intro-line" style="font-style:italic;font-size:23.1px;">
             Independent researcher focused on cosmology, dark-sector dynamics,
             and interacting dark energy models.
         </p>
@@ -577,32 +577,33 @@
   .pulse-ring.show { animation: pulse 1.6s ease-out infinite; }
 </style>
 <style>
-    html, body { margin:0; padding:0; background:#0c4a6e; overflow-x:hidden; }
-    body { padding:6px 6px 0 6px; display:flex; flex-direction:column; }
-    .outer,.card { margin:0; padding:0; background:#0c4a6e; border:none;
-                    box-shadow:none; border-radius:0; flex:1;
-                    display:flex; flex-direction:column; }
-    .replay-btn { display:none; }
-    svg { width:100%; height:auto; display:block; border-radius:8px;
-           box-shadow:0 0 0 3px white; flex-shrink:0; }
-    .conclusion { display:none; }
-    </style>
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:#0c4a6e!important;overflow-x:hidden;width:100%;}
+body{padding:6px 6px 0 6px;display:flex;flex-direction:column;}
+.outer,.card{background:#0c4a6e!important;border:none!important;box-shadow:none!important;border-radius:0!important;padding:0!important;max-width:100%!important;flex:1;display:flex;flex-direction:column;}
+.replay-btn{display:none!important;}
+svg{width:100%;height:auto;display:block;border-radius:8px;box-shadow:0 0 0 3px white;flex-shrink:0;}
+.conclusion{display:none!important;}
+</style>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    var strip = document.createElement('div');
-    strip.style.cssText = 'flex:1;display:flex;align-items:center;justify-content:flex-end;min-height:36px;';
-
-    var btn = document.createElement('button');
-    btn.innerHTML = '&amp;#x21ba;&amp;nbsp;Replay';
-    btn.style.cssText = 'background:#fff;border:1.5px solid #f97316;border-radius:20px;color:#f97316;font-family:Arial,sans-serif;font-size:12px;font-weight:600;padding:5px 18px;cursor:pointer;line-height:1.4;white-space:nowrap;flex-shrink:0;';
-    btn.onclick = function() { if(window.__replayFn) window.__replayFn(); };
+document.addEventListener('DOMContentLoaded',function(){
+    var bg='#0c4a6e';
+    var svg=document.querySelector('svg');
+    if(svg){var el=svg.parentElement;while(el&amp;&amp;el!==document.documentElement){el.style.setProperty('background',bg,'important');el.style.display='flex';el.style.flexDirection='column';el=el.parentElement;}}
+    document.body.style.setProperty('background',bg,'important');
+    var strip=document.createElement('div');
+    strip.style.cssText='flex:1;display:flex;align-items:center;justify-content:flex-end;min-height:36px;background:#0c4a6e;';
+    var btn=document.createElement('button');
+    btn.innerHTML='&amp;#x21ba;&amp;nbsp;Replay';
+    btn.style.cssText='background:#9ca3af;border:2.5px solid #111827;border-radius:8px;color:#111827;font-family:Arial,sans-serif;font-size:13px;font-weight:700;padding:7px 20px;cursor:pointer;line-height:1.4;white-space:nowrap;box-shadow:0 2px 4px rgba(0,0,0,0.3);';
+    btn.onmouseover=function(){this.style.background='#6b7280';};
+    btn.onmouseout=function(){this.style.background='#9ca3af';};
+    btn.onmousedown=function(){this.style.boxShadow='none';this.style.transform='translateY(1px)';};
+    btn.onmouseup=function(){this.style.boxShadow='0 2px 4px rgba(0,0,0,0.3)';this.style.transform='';};
+    btn.onclick=function(){if(window.__replayFn)window.__replayFn();};
     strip.appendChild(btn);
-
-    var root = document.querySelector('.card') || document.querySelector('.outer') || document.body;
-    // Make root flex column so strip can use flex:1
-    root.style.display = 'flex';
-    root.style.flexDirection = 'column';
-    root.insertBefore(strip, root.firstChild);
+    var root=document.querySelector('.card')||document.querySelector('.outer')||document.body;
+    root.insertBefore(strip,root.firstChild);
 });
 </script>
 </head>
@@ -876,7 +877,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const pulse    = document.getElementById(&quot;pulse&quot;);
   const todayDot = document.getElementById(&quot;today-dot&quot;);
 
-  const rldsClipRect = document.getElementById('rlds-clip-rect');
+  const rldsClipRect=document.getElementById('rlds-clip-rect');
     const lcdmClipRect = document.getElementById(&quot;lcdm-clip-rect&quot;);
 
   function easeInOut(t){
@@ -885,7 +886,7 @@ document.addEventListener('DOMContentLoaded', function() {
   function easeOut(t){ return 1 - Math.pow(1-t,2); }
 
   function preparePaths(){
-    if(rldsClipRect) rldsClipRect.setAttribute('width','0');
+    if(rldsClipRect)rldsClipRect.setAttribute('width','0');
     // LCDM uses clipPath reveal — reset clip rect width to 0
     lcdmClipRect.setAttribute(&quot;width&quot;, &quot;0&quot;);
     dot.setAttribute(&quot;cx&quot;,&quot;80.7&quot;);
@@ -956,7 +957,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Both curves draw together — RLDS in 7s, LCDM also 7s
     animClip(rldsClipRect, 7000, 200);
-    animDot(rlds, rlds.getTotalLength(), 7000, 200);
+    animDot(rlds,rlds.getTotalLength(),7000,200);
     // Animate LCDM via clipPath rect (keeps visual dashes)
     animClip(lcdmClipRect, 7000, 200);
 
@@ -995,8 +996,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 8200);
   }
 
-  window.__replayFn = run;
-    setTimeout(function(){ if(!started){ started=true; run(); } }, 350);
+  window.__replayFn=run;
+    setTimeout(function(){if(!started){started=true;run();}},350);
 
   document.getElementById(&quot;replayBtn&quot;).addEventListener(&quot;click&quot;, () => {
     started = true; run();
@@ -1007,6 +1008,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </html>
 " style="width:100%;height:290px;border:none;border-radius:12px;display:block;overflow:hidden;" scrolling="no"></iframe>
         </section>
+
 
         <section class="card">
             <h2>Key Testable Signature</h2>
@@ -1124,32 +1126,33 @@ document.addEventListener('DOMContentLoaded', function() {
   .conclusion.show { opacity: 1; transform: translateY(0); }
 </style>
 <style>
-    html, body { margin:0; padding:0; background:#0c4a6e; overflow-x:hidden; }
-    body { padding:6px 6px 0 6px; display:flex; flex-direction:column; }
-    .outer,.card { margin:0; padding:0; background:#0c4a6e; border:none;
-                    box-shadow:none; border-radius:0; flex:1;
-                    display:flex; flex-direction:column; }
-    .replay-btn { display:none; }
-    svg { width:100%; height:auto; display:block; border-radius:8px;
-           box-shadow:0 0 0 3px white; flex-shrink:0; }
-    .conclusion { display:none; }
-    </style>
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:#0c4a6e!important;overflow-x:hidden;width:100%;}
+body{padding:6px 6px 0 6px;display:flex;flex-direction:column;}
+.outer,.card{background:#0c4a6e!important;border:none!important;box-shadow:none!important;border-radius:0!important;padding:0!important;max-width:100%!important;flex:1;display:flex;flex-direction:column;}
+.replay-btn{display:none!important;}
+svg{width:100%;height:auto;display:block;border-radius:8px;box-shadow:0 0 0 3px white;flex-shrink:0;}
+.conclusion{display:none!important;}
+</style>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    var strip = document.createElement('div');
-    strip.style.cssText = 'flex:1;display:flex;align-items:center;justify-content:flex-end;min-height:36px;';
-
-    var btn = document.createElement('button');
-    btn.innerHTML = '&amp;#x21ba;&amp;nbsp;Replay';
-    btn.style.cssText = 'background:#fff;border:1.5px solid #f97316;border-radius:20px;color:#f97316;font-family:Arial,sans-serif;font-size:12px;font-weight:600;padding:5px 18px;cursor:pointer;line-height:1.4;white-space:nowrap;flex-shrink:0;';
-    btn.onclick = function() { if(window.__replayFn) window.__replayFn(); };
+document.addEventListener('DOMContentLoaded',function(){
+    var bg='#0c4a6e';
+    var svg=document.querySelector('svg');
+    if(svg){var el=svg.parentElement;while(el&amp;&amp;el!==document.documentElement){el.style.setProperty('background',bg,'important');el.style.display='flex';el.style.flexDirection='column';el=el.parentElement;}}
+    document.body.style.setProperty('background',bg,'important');
+    var strip=document.createElement('div');
+    strip.style.cssText='flex:1;display:flex;align-items:center;justify-content:flex-end;min-height:36px;background:#0c4a6e;';
+    var btn=document.createElement('button');
+    btn.innerHTML='&amp;#x21ba;&amp;nbsp;Replay';
+    btn.style.cssText='background:#9ca3af;border:2.5px solid #111827;border-radius:8px;color:#111827;font-family:Arial,sans-serif;font-size:13px;font-weight:700;padding:7px 20px;cursor:pointer;line-height:1.4;white-space:nowrap;box-shadow:0 2px 4px rgba(0,0,0,0.3);';
+    btn.onmouseover=function(){this.style.background='#6b7280';};
+    btn.onmouseout=function(){this.style.background='#9ca3af';};
+    btn.onmousedown=function(){this.style.boxShadow='none';this.style.transform='translateY(1px)';};
+    btn.onmouseup=function(){this.style.boxShadow='0 2px 4px rgba(0,0,0,0.3)';this.style.transform='';};
+    btn.onclick=function(){if(window.__replayFn)window.__replayFn();};
     strip.appendChild(btn);
-
-    var root = document.querySelector('.card') || document.querySelector('.outer') || document.body;
-    // Make root flex column so strip can use flex:1
-    root.style.display = 'flex';
-    root.style.flexDirection = 'column';
-    root.insertBefore(strip, root.firstChild);
+    var root=document.querySelector('.card')||document.querySelector('.outer')||document.body;
+    root.insertBefore(strip,root.firstChild);
 });
 </script>
 </head>
@@ -1166,11 +1169,13 @@ document.addEventListener('DOMContentLoaded', function() {
       </marker>
       <!-- clipPaths for dashed baseline reveal -->
       <clipPath id=&quot;lcdm-a-clip&quot;>
-        <rect id=&quot;lcdm-a-rect&quot; x=&quot;0&quot; y=&quot;0&quot; width=&quot;0&quot; height=&quot;400&quot;/>
+        <rect id=&quot;lcdm-a-rect&quot; x=&quot;660&quot; y=&quot;0&quot; width=&quot;0&quot; height=&quot;400&quot;/>
       </clipPath>
       <clipPath id=&quot;lcdm-b-clip&quot;>
-        <rect id=&quot;lcdm-b-rect&quot; x=&quot;0&quot; y=&quot;300&quot; width=&quot;0&quot; height=&quot;400&quot;/>
+        <rect id=&quot;lcdm-b-rect&quot; x=&quot;660&quot; y=&quot;300&quot; width=&quot;0&quot; height=&quot;400&quot;/>
       </clipPath>
+          <clipPath id=&quot;ide-clip&quot;><rect id=&quot;ide-rect&quot; x=&quot;660&quot; y=&quot;0&quot; width=&quot;0&quot; height=&quot;400&quot;/></clipPath>
+      <clipPath id=&quot;attb-clip&quot;><rect id=&quot;attb-rect&quot; x=&quot;660&quot; y=&quot;300&quot; width=&quot;0&quot; height=&quot;400&quot;/></clipPath>
     </defs>
 
     <!-- white bg + border -->
@@ -1243,7 +1248,7 @@ document.addEventListener('DOMContentLoaded', function() {
           class=&quot;curve&quot; clip-path=&quot;url(#lcdm-a-clip)&quot;/>
 
     <!-- IDE attractor curve Panel A -->
-    <path id=&quot;ide-path&quot; class=&quot;curve&quot;
+    <path id=&quot;ide-path&quot; class=&quot;curve&quot; clip-path=&quot;url(#ide-clip)&quot;
       d=&quot;M 83.5 180.7 L 88.8 183.1 L 94.1 185.9 L 99.4 189.1 L 104.7 192.8 L 109.9 197.0 L 115.2 201.4 L 120.5 206.1 L 125.8 211.0 L 131.1 215.8 L 136.4 220.5 L 141.6 224.9 L 146.9 228.8 L 152.2 232.0 L 157.5 234.5 L 162.8 236.0 L 168.0 236.5 L 173.3 236.1 L 178.6 234.7 L 183.9 232.3 L 189.2 229.2 L 194.5 225.4 L 199.7 221.0 L 205.0 216.4 L 210.3 211.5 L 215.6 206.6 L 220.9 201.9 L 226.2 197.4 L 231.4 193.3 L 236.7 189.5 L 242.0 186.2 L 247.3 183.3 L 252.6 180.9 L 257.8 178.9 L 263.1 177.2 L 268.4 175.9 L 273.7 174.9 L 279.0 174.1 L 284.3 173.5 L 289.5 173.0 L 294.8 172.7 L 300.1 172.4 L 305.4 172.3 L 310.7 172.2 L 316.0 172.1 L 321.2 172.0 L 326.5 172.0 L 331.8 172.0 L 337.1 171.9 L 342.4 171.9 L 347.6 171.9 L 352.9 171.9 L 358.2 171.9 L 363.5 171.9 L 368.8 171.9 L 374.1 171.9 L 379.3 171.9 L 384.6 171.9 L 389.9 171.9 L 395.2 171.9 L 400.5 171.9 L 405.8 171.9 L 411.0 171.9 L 416.3 171.9 L 421.6 171.9 L 426.9 171.9 L 432.2 171.9 L 437.4 171.9 L 442.7 171.9 L 448.0 171.9 L 453.3 171.9 L 458.6 171.9 L 463.9 171.9 L 469.1 171.9 L 474.4 171.9 L 479.7 171.9 L 485.0 171.9 L 490.3 171.9 L 495.6 171.9 L 500.8 171.9 L 506.1 171.9 L 511.4 171.9 L 516.7 171.9 L 522.0 171.9 L 527.2 171.9 L 532.5 171.9 L 537.8 171.9 L 543.1 171.9 L 548.4 171.9 L 553.7 171.9 L 558.9 171.9 L 564.2 171.9 L 569.5 171.9 L 574.8 171.9 L 580.1 171.9 L 585.3 171.9 L 590.6 171.9 L 595.9 171.9 L 601.2 171.9 L 606.5 171.9&quot;/>
 
     <!-- phantom dip annotation -->
@@ -1352,7 +1357,7 @@ document.addEventListener('DOMContentLoaded', function() {
           class=&quot;curve&quot; clip-path=&quot;url(#lcdm-b-clip)&quot;/>
 
     <!-- Attractor prediction Panel B -->
-    <path id=&quot;att-b-path&quot; class=&quot;curve&quot;
+    <path id=&quot;att-b-path&quot; class=&quot;curve&quot; clip-path=&quot;url(#attb-clip)&quot;
       d=&quot;M 83.5 545.7 L 88.8 545.5 L 94.1 544.9 L 99.4 544.0 L 104.7 542.8 L 109.9 541.4 L 115.2 539.9 L 120.5 538.2 L 125.8 536.5 L 131.1 534.7 L 136.4 532.9 L 141.6 531.1 L 146.9 529.3 L 152.2 527.5 L 157.5 525.6 L 162.8 523.8 L 168.0 522.0 L 173.3 520.1 L 178.6 518.3 L 183.9 516.5 L 189.2 514.6 L 194.5 512.8 L 199.7 511.0 L 205.0 509.2 L 210.3 507.4 L 215.6 505.6 L 220.9 503.8 L 226.2 502.1 L 231.4 500.4 L 236.7 498.8 L 242.0 497.4 L 247.3 496.1 L 252.6 494.9 L 257.8 494.0 L 263.1 493.2 L 268.4 492.6 L 273.7 492.1 L 279.0 491.8 L 284.3 491.6 L 289.5 491.4 L 294.8 491.4 L 300.1 491.3 L 305.4 491.3 L 310.7 491.3 L 316.0 491.3 L 321.2 491.3 L 326.5 491.3 L 331.8 491.3 L 337.1 491.3 L 342.4 491.2 L 347.6 491.2 L 352.9 491.2 L 358.2 491.2 L 363.5 491.2 L 368.8 491.2 L 374.1 491.2 L 379.3 491.2 L 384.6 491.2 L 389.9 491.2 L 395.2 491.2 L 400.5 491.2 L 405.8 491.2 L 411.0 491.2 L 416.3 491.2 L 421.6 491.2 L 426.9 491.2 L 432.2 491.2 L 437.4 491.2 L 442.7 491.2 L 448.0 491.2 L 453.3 491.2 L 458.6 491.2 L 463.9 491.2 L 469.1 491.2 L 474.4 491.2 L 479.7 491.2 L 485.0 491.2 L 490.3 491.2 L 495.6 491.2 L 500.8 491.2 L 506.1 491.2 L 511.4 491.2 L 516.7 491.2 L 522.0 491.2 L 527.2 491.2 L 532.5 491.2 L 537.8 491.2 L 543.1 491.2 L 548.4 491.2 L 553.7 491.2 L 558.9 491.2 L 564.2 491.2 L 569.5 491.2 L 574.8 491.2 L 580.1 491.2 L 585.3 491.2 L 590.6 491.2 L 595.9 491.2 L 601.2 491.2 L 606.5 491.2&quot;/>
 
     <!-- ══ DATA POINTS with error bars (Panel B) ══ -->
@@ -1455,22 +1460,26 @@ document.addEventListener('DOMContentLoaded', function() {
   const laRect = document.getElementById(&quot;lcdm-a-rect&quot;);
   const lbRect = document.getElementById(&quot;lcdm-b-rect&quot;);
 
-  const iLen = ideP.getTotalLength();
-  const bLen = attbP.getTotalLength();
+  const iLen = 0; // unused - using clipPath
+  const bLen = 0; // unused - using clipPath
 
   function easeInOut(t){
     return t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2,3)/2;
   }
 
   function preparePaths(){
-    ideP.style.strokeDasharray  = iLen;
-    ideP.style.strokeDashoffset = iLen;
-    attbP.style.strokeDasharray  = bLen;
-    attbP.style.strokeDashoffset = bLen;
-    laRect.setAttribute(&quot;width&quot;,&quot;0&quot;);
-    lbRect.setAttribute(&quot;width&quot;,&quot;0&quot;);
+    // ide and att-b use clipPath RTL — no dashoffset needed, just reset clip rects
+    ideP.style.strokeDasharray  = &quot;none&quot;;
+    ideP.style.strokeDashoffset = &quot;0&quot;;
+    attbP.style.strokeDasharray  = &quot;none&quot;;
+    attbP.style.strokeDashoffset = &quot;0&quot;;
+    var ir = document.getElementById(&quot;ide-rect&quot;);
+    var ar = document.getElementById(&quot;attb-rect&quot;);
+    if(ir){ ir.setAttribute(&quot;x&quot;,&quot;660&quot;); ir.setAttribute(&quot;width&quot;,&quot;0&quot;); }
+    if(ar){ ar.setAttribute(&quot;x&quot;,&quot;660&quot;); ar.setAttribute(&quot;width&quot;,&quot;0&quot;); }
+    laRect.setAttribute(&quot;x&quot;,&quot;660&quot;); laRect.setAttribute(&quot;width&quot;,&quot;0&quot;);
+    lbRect.setAttribute(&quot;x&quot;,&quot;660&quot;); lbRect.setAttribute(&quot;width&quot;,&quot;0&quot;);
     document.querySelectorAll(&quot;.fade&quot;).forEach(el => el.classList.remove(&quot;show&quot;));
-    document.getElementById(&quot;conclusion&quot;).classList.remove(&quot;show&quot;);
   }
 
   function animPath(path, len, dur, delay){
@@ -1485,11 +1494,14 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function animClip(rect, dur, delay){
+    // Reveals path RIGHT to LEFT (past→present, matching redshift axis)
     const t0 = performance.now() + delay;
     function frame(now){
       if(now < t0){ requestAnimationFrame(frame); return; }
-      const p = Math.min((now-t0)/dur,1);
-      rect.setAttribute(&quot;width&quot;, 660*easeInOut(p));
+      const p = Math.min((now-t0)/dur, 1);
+      const e = easeInOut(p);
+      rect.setAttribute(&quot;x&quot;,     660 * (1 - e));  // slides left from 660→0
+      rect.setAttribute(&quot;width&quot;, 660 * e);          // grows 0→660
       if(p<1) requestAnimationFrame(frame);
     }
     requestAnimationFrame(frame);
@@ -1508,7 +1520,9 @@ document.addEventListener('DOMContentLoaded', function() {
     preparePaths();
 
     // Panel A: IDE curve + ΛCDM baseline
-    animPath(ideP, iLen, 4000, 300);
+    // Animate ide-path via clipPath RTL
+    var ideRect = document.getElementById(&quot;ide-rect&quot;);
+    if(ideRect) animClip(ideRect, 4000, 300);
     animClip(laRect, 4000, 300);
 
     // Panel A annotations
@@ -1520,7 +1534,9 @@ document.addEventListener('DOMContentLoaded', function() {
     showAt(&quot;mid-text&quot;, 4600);
 
     // Panel B: attractor + ΛCDM baseline
-    animPath(attbP, bLen, 4000, 5200);
+    // Animate att-b-path via clipPath RTL
+    var attbRect = document.getElementById(&quot;attb-rect&quot;);
+    if(attbRect) animClip(attbRect, 4000, 5200);
     animClip(lbRect, 4000, 5200);
 
     // Panel B labels and data
@@ -1532,12 +1548,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Conclusion
     setTimeout(()=>{
-      document.getElementById(&quot;conclusion&quot;).classList.add(&quot;show&quot;);
     }, 9000);
   }
 
-  window.__replayFn = run;
-    setTimeout(function(){ if(!started){ started=true; run(); } }, 350);
+  window.__replayFn=run;
+    setTimeout(function(){if(!started){started=true;run();}},350);
 
   document.getElementById(&quot;replayBtn&quot;).addEventListener(&quot;click&quot;,()=>{
     started=true; run();
@@ -1549,9 +1564,12 @@ document.addEventListener('DOMContentLoaded', function() {
 " style="width:100%;height:410px;border:none;border-radius:12px;display:block;overflow:hidden;" scrolling="no"></iframe>
         </section>
 
+
         <!-- ===== ANIMATED FIGURE BLOCK ===== -->
         
         <!-- ===== END ANIMATED FIGURE BLOCK ===== -->
+
+        
 
         
         <section class="card">
@@ -1669,32 +1687,33 @@ document.addEventListener('DOMContentLoaded', function() {
   .conclusion.show { opacity: 1; transform: translateY(0); }
 </style>
 <style>
-    html, body { margin:0; padding:0; background:#0c4a6e; overflow-x:hidden; }
-    body { padding:6px 6px 0 6px; display:flex; flex-direction:column; }
-    .outer,.card { margin:0; padding:0; background:#0c4a6e; border:none;
-                    box-shadow:none; border-radius:0; flex:1;
-                    display:flex; flex-direction:column; }
-    .replay-btn { display:none; }
-    svg { width:100%; height:auto; display:block; border-radius:8px;
-           box-shadow:0 0 0 3px white; flex-shrink:0; }
-    .conclusion { display:none; }
-    </style>
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:#0c4a6e!important;overflow-x:hidden;width:100%;}
+body{padding:6px 6px 0 6px;display:flex;flex-direction:column;}
+.outer,.card{background:#0c4a6e!important;border:none!important;box-shadow:none!important;border-radius:0!important;padding:0!important;max-width:100%!important;flex:1;display:flex;flex-direction:column;}
+.replay-btn{display:none!important;}
+svg{width:100%;height:auto;display:block;border-radius:8px;box-shadow:0 0 0 3px white;flex-shrink:0;}
+.conclusion{display:none!important;}
+</style>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    var strip = document.createElement('div');
-    strip.style.cssText = 'flex:1;display:flex;align-items:center;justify-content:flex-end;min-height:36px;';
-
-    var btn = document.createElement('button');
-    btn.innerHTML = '&amp;#x21ba;&amp;nbsp;Replay';
-    btn.style.cssText = 'background:#fff;border:1.5px solid #f97316;border-radius:20px;color:#f97316;font-family:Arial,sans-serif;font-size:12px;font-weight:600;padding:5px 18px;cursor:pointer;line-height:1.4;white-space:nowrap;flex-shrink:0;';
-    btn.onclick = function() { if(window.__replayFn) window.__replayFn(); };
+document.addEventListener('DOMContentLoaded',function(){
+    var bg='#0c4a6e';
+    var svg=document.querySelector('svg');
+    if(svg){var el=svg.parentElement;while(el&amp;&amp;el!==document.documentElement){el.style.setProperty('background',bg,'important');el.style.display='flex';el.style.flexDirection='column';el=el.parentElement;}}
+    document.body.style.setProperty('background',bg,'important');
+    var strip=document.createElement('div');
+    strip.style.cssText='flex:1;display:flex;align-items:center;justify-content:flex-end;min-height:36px;background:#0c4a6e;';
+    var btn=document.createElement('button');
+    btn.innerHTML='&amp;#x21ba;&amp;nbsp;Replay';
+    btn.style.cssText='background:#9ca3af;border:2.5px solid #111827;border-radius:8px;color:#111827;font-family:Arial,sans-serif;font-size:13px;font-weight:700;padding:7px 20px;cursor:pointer;line-height:1.4;white-space:nowrap;box-shadow:0 2px 4px rgba(0,0,0,0.3);';
+    btn.onmouseover=function(){this.style.background='#6b7280';};
+    btn.onmouseout=function(){this.style.background='#9ca3af';};
+    btn.onmousedown=function(){this.style.boxShadow='none';this.style.transform='translateY(1px)';};
+    btn.onmouseup=function(){this.style.boxShadow='0 2px 4px rgba(0,0,0,0.3)';this.style.transform='';};
+    btn.onclick=function(){if(window.__replayFn)window.__replayFn();};
     strip.appendChild(btn);
-
-    var root = document.querySelector('.card') || document.querySelector('.outer') || document.body;
-    // Make root flex column so strip can use flex:1
-    root.style.display = 'flex';
-    root.style.flexDirection = 'column';
-    root.insertBefore(strip, root.firstChild);
+    var root=document.querySelector('.card')||document.querySelector('.outer')||document.body;
+    root.insertBefore(strip,root.firstChild);
 });
 </script>
 </head>
@@ -2085,8 +2104,8 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // Trigger on scroll
-  window.__replayFn = run;
-    setTimeout(function(){ if(!started){ started=true; run(); } }, 350);
+  window.__replayFn=run;
+    setTimeout(function(){if(!started){started=true;run();}},350);
 
   document.getElementById(&quot;replayBtn&quot;).addEventListener(&quot;click&quot;, () => {
     started = true;
