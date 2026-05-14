@@ -5,6 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aleksander Kubanski — Dark-Sector Feedback</title>
 
+    <!-- ===== SEO ===== -->
+    <meta name="description" content="Research by Aleksander Kubanski on dark-sector feedback, late-time cosmic stability, RLDS cosmology, and interacting dark energy models.">
+    <meta name="author" content="Aleksander Kubanski">
+    <link rel="canonical" href="https://research.kubanski.pro/">
+
+    <!-- ===== Open Graph (Telegram, LinkedIn, Discord, Slack) ===== -->
+    <meta property="og:title" content="Dark-Sector Feedback and Late-Time Cosmic Stability">
+    <meta property="og:description" content="A research page presenting an attractor-based hypothesis for dark-sector feedback, interacting dark energy, and late-time cosmic stability.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://research.kubanski.pro/">
+    <meta property="og:site_name" content="Aleksander Kubanski — Research">
+    <meta property="og:locale" content="en_US">
+
+    <!-- ===== Twitter / X ===== -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Dark-Sector Feedback and Late-Time Cosmic Stability">
+    <meta name="twitter:description" content="Research by Aleksander Kubanski on dark-sector feedback, RLDS cosmology, and late-time cosmic stability.">
+
     <style>
         body {
             background: #0b1020;
@@ -107,249 +125,33 @@
             margin-top: 10px;
         }
 
-        /* ===== Animated trajectory figure ===== */
-        .figure-card {
-            overflow: hidden;
-        }
-
-        .figure-intro {
-            font-size: 18px;
-            color: #cbd5e1;
-            margin-bottom: 20px;
-        }
-
-        .trajectory-wrap {
-            margin-top: 18px;
-            padding: 18px;
-            border: 1px solid rgba(125, 211, 252, 0.12);
-            border-radius: 20px;
-            background: linear-gradient(180deg, rgba(15,23,42,0.88) 0%, rgba(9,15,30,0.96) 100%);
-            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02);
-        }
-
-        .trajectory-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 16px;
-            flex-wrap: wrap;
-        }
-
-        .trajectory-title {
-            font-size: 22px;
+        /* ===== Figure section helpers ===== */
+        .figure-label {
+            font-size: 11px;
             font-weight: 700;
-            color: #ffffff;
-            margin: 0;
-        }
-
-        .trajectory-subtitle {
-            font-size: 14px;
-            color: #94a3b8;
-            margin: 0;
-        }
-
-        .trajectory-btn {
-            background: transparent;
+            letter-spacing: 2px;
+            text-transform: uppercase;
             color: #7dd3fc;
-            border: 1px solid rgba(125, 211, 252, 0.35);
-            border-radius: 999px;
-            padding: 10px 14px;
-            font-size: 14px;
-            cursor: pointer;
-            transition: 0.25s ease;
-            white-space: nowrap;
+            margin-bottom: 6px;
         }
 
-        .trajectory-btn:hover {
-            background: rgba(125, 211, 252, 0.08);
-            border-color: rgba(125, 211, 252, 0.7);
+        .figure-title {
+            margin-bottom: 10px;
         }
 
-        .trajectory-svg {
+        .figure-caption {
+            font-size: 16px;
+            line-height: 1.65;
+            color: #cbd5e1;
+            margin-bottom: 10px;
+        }
+
+        .figure-iframe {
             width: 100%;
-            height: auto;
+            border: none;
+            border-radius: 12px;
             display: block;
-            border-radius: 16px;
-            background: #f8fafc;
-        }
-
-        .trajectory-caption {
-            margin-top: 16px;
-            font-size: 16px;
-            line-height: 1.8;
-            color: #dbe7f3;
-        }
-
-        .trajectory-conclusion {
-            margin-top: 18px;
-            padding: 14px 16px;
-            border-left: 3px solid #7dd3fc;
-            background: rgba(125, 211, 252, 0.06);
-            color: #e2e8f0;
-            border-radius: 10px;
-            font-size: 17px;
-            line-height: 1.7;
-            opacity: 0;
-            transform: translateY(8px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
-        }
-
-        .trajectory-conclusion.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .path-animated,
-        .path-animated-2 {
-            fill: none;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-
-        #attractor-path {
-            stroke: #1f2937;
-            stroke-width: 5;
-        }
-
-        #lcdm-path {
-            stroke: #6b7280;
-            stroke-width: 3;
-            stroke-dasharray: 8 8;
-            opacity: 0.9;
-        }
-
-        .axis-line {
-            stroke: #9ca3af;
-            stroke-width: 1.5;
-        }
-
-        .grid-line {
-            stroke: #e5e7eb;
-            stroke-width: 1;
-            stroke-dasharray: 3 6;
-        }
-
-        .ref-line {
-            stroke: #d1d5db;
-            stroke-width: 1.2;
-            stroke-dasharray: 4 6;
-        }
-
-        .axis-text {
-            fill: #374151;
-            font-size: 16px;
-            font-family: Arial, sans-serif;
-        }
-
-        .small-label {
-            fill: #6b7280;
-            font-size: 14px;
-            font-family: Arial, sans-serif;
-        }
-
-        .title-text {
-            fill: #111827;
-            font-size: 26px;
-            font-weight: 700;
-            font-family: Georgia, "Times New Roman", serif;
-        }
-
-        .legend-text {
-            fill: #111827;
-            font-size: 15px;
-            font-family: Arial, sans-serif;
-        }
-
-        .note-box {
-            fill: rgba(255,255,255,0.92);
-            stroke: #d1d5db;
-            stroke-width: 1;
-        }
-
-        .note-text {
-            fill: #374151;
-            font-size: 15px;
-            font-family: Georgia, "Times New Roman", serif;
-            font-style: italic;
-        }
-
-        .note-text-bold {
-            fill: #111827;
-            font-size: 15px;
-            font-family: Georgia, "Times New Roman", serif;
-            font-style: italic;
-            font-weight: 700;
-        }
-
-        .milestone,
-        .note-group,
-        .guide-label {
-            opacity: 0;
-            transition: opacity 0.7s ease;
-        }
-
-        .milestone.show,
-        .note-group.show,
-        .guide-label.show {
-            opacity: 1;
-        }
-
-        .moving-dot {
-            fill: #111827;
-            stroke: #ffffff;
-            stroke-width: 2;
-        }
-
-        .guide-marker {
-            fill: #6b7280;
-        }
-
-        /* Pulsing "We are here" marker */
-        .pulse-ring {
-            fill: none;
-            stroke: #ef4444;
-            stroke-width: 2;
-            opacity: 0;
-            transform-origin: 335.30px 314px;
-        }
-
-        #we-are-here-group.show .pulse-ring {
-            opacity: 1;
-            animation: pulseRing 1.8s ease-out infinite;
-        }
-
-        #we-are-here-dot {
-            fill: #ef4444;
-            opacity: 0;
-        }
-
-        #we-are-here-group.show #we-are-here-dot {
-            opacity: 1;
-        }
-
-        @keyframes pulseRing {
-            0%   { r: 8px;  opacity: 0.8; }
-            100% { r: 22px; opacity: 0; }
-        }
-
-        @media (max-width: 700px) {
-            .figure-intro {
-                font-size: 16px;
-            }
-
-            .trajectory-title {
-                font-size: 18px;
-            }
-
-            .trajectory-subtitle {
-                font-size: 13px;
-            }
-
-            .trajectory-caption,
-            .trajectory-conclusion {
-                font-size: 15px;
-            }
+            overflow: hidden;
         }
 
         @media (max-width: 640px) {
@@ -414,9 +216,9 @@
         </section>
 
         <section class="card">
-            <p style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#7dd3fc;margin-bottom:6px;">Figure 1</p>
-            <h2 style="margin-bottom:10px;">The Cosmic Trajectory</h2>
-            <p style="font-size:16px;line-height:1.65;color:#cbd5e1;margin-bottom:10px;">The solid curve traces the evolution of the matter fraction under the attractor hypothesis. The dashed curve shows &Lambda;CDM. Four key moments: onset of acceleration, coupling threshold, present epoch, late-time attractor.</p>
+            <p class="figure-label">Figure 1</p>
+            <h2 class="figure-title">The Cosmic Trajectory</h2>
+            <p class="figure-caption">The solid curve traces the evolution of the matter fraction under the attractor hypothesis. The dashed curve shows &Lambda;CDM. Four key moments: onset of acceleration, coupling threshold, present epoch, late-time attractor.</p>
             <iframe srcdoc="<!DOCTYPE html>
 <html lang=&quot;en&quot;>
 <head>
@@ -1006,7 +808,7 @@ document.addEventListener('DOMContentLoaded',function(){
 </script>
 </body>
 </html>
-" style="width:100%;height:290px;border:none;border-radius:12px;display:block;overflow:hidden;" scrolling="no"></iframe>
+" class="figure-iframe" style="height:290px;" scrolling="no"></iframe>
         </section>
 
 
@@ -1030,9 +832,9 @@ document.addEventListener('DOMContentLoaded',function(){
         </section>
 
         <section class="card">
-            <p style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#7dd3fc;margin-bottom:6px;">Figure 2</p>
-            <h2 style="margin-bottom:10px;">The Paired Signature</h2>
-            <p style="font-size:16px;line-height:1.65;color:#cbd5e1;margin-bottom:10px;">Panel&nbsp;A: dark-energy equation of state dips below &minus;1. Panel&nbsp;B: simultaneous suppression of structure growth. Both effects governed by the same coupling constant.</p>
+            <p class="figure-label">Figure 2</p>
+            <h2 class="figure-title">The Paired Signature</h2>
+            <p class="figure-caption">Panel&nbsp;A: dark-energy equation of state dips below &minus;1. Panel&nbsp;B: simultaneous suppression of structure growth. Both effects governed by the same coupling constant.</p>
             <iframe srcdoc="<!DOCTYPE html>
 <html lang=&quot;en&quot;>
 <head>
@@ -1561,21 +1363,14 @@ document.addEventListener('DOMContentLoaded',function(){
 </script>
 </body>
 </html>
-" style="width:100%;height:410px;border:none;border-radius:12px;display:block;overflow:hidden;" scrolling="no"></iframe>
+" class="figure-iframe" style="height:410px;" scrolling="no"></iframe>
         </section>
 
 
-        <!-- ===== ANIMATED FIGURE BLOCK ===== -->
-        
-        <!-- ===== END ANIMATED FIGURE BLOCK ===== -->
-
-        
-
-        
         <section class="card">
-            <p style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#7dd3fc;margin-bottom:6px;">Figure 3</p>
-            <h2 style="margin-bottom:10px;">The Attractor is Robust</h2>
-            <p style="font-size:16px;line-height:1.65;color:#cbd5e1;margin-bottom:10px;">Fourteen universes with very different initial matter fractions converge to the same late-time band within a few cosmic e-folds.</p>
+            <p class="figure-label">Figure 3</p>
+            <h2 class="figure-title">The Attractor is Robust</h2>
+            <p class="figure-caption">Fourteen universes with very different initial matter fractions converge to the same late-time band within a few cosmic e-folds.</p>
             <iframe srcdoc="<!DOCTYPE html>
 <html lang=&quot;en&quot;>
 <head>
@@ -2115,7 +1910,7 @@ document.addEventListener('DOMContentLoaded',function(){
 </script>
 </body>
 </html>
-" style="width:100%;height:275px;border:none;border-radius:12px;display:block;overflow:hidden;" scrolling="no"></iframe>
+" class="figure-iframe" style="height:275px;" scrolling="no"></iframe>
         </section>
 
         <section class="card">
@@ -2196,150 +1991,5 @@ document.addEventListener('DOMContentLoaded',function(){
         </section>
 
     </main>
-
-    <script>
-    (function () {
-        const svg         = document.getElementById("trajectorySvg");
-        if (!svg) return;
-
-        const attractorPath  = document.getElementById("attractor-path");
-        const lcdmPath       = document.getElementById("lcdm-path");
-        const movingDot      = document.getElementById("moving-dot");
-        const replayBtn      = document.getElementById("replayTrajectory");
-        const conclusion     = document.getElementById("trajectoryConclusion");
-
-        const milestoneIds   = ["m1", "m2", "m3", "m4", "m5", "m-lcdm-now"];
-        const noteIds        = ["note1", "note2", "note3", "note4"];
-        const guideIds       = ["label-r23", "label-rc", "label-rstar"];
-        const weAreHere      = document.getElementById("we-are-here-group");
-
-        const milestones  = milestoneIds.map(id => document.getElementById(id));
-        const notes       = noteIds.map(id => document.getElementById(id));
-        const guides      = guideIds.map(id => document.getElementById(id));
-
-        let started = false;
-
-        /* ── Ease-in-out cubic ── */
-        function easeInOutCubic(t) {
-            return t < 0.5
-                ? 4 * t * t * t
-                : 1 - Math.pow(-2 * t + 2, 3) / 2;
-        }
-
-        /* ── Prepare path for dash-offset animation ── */
-        function preparePath(path) {
-            const len = path.getTotalLength();
-            path.style.strokeDasharray  = len;
-            path.style.strokeDashoffset = len;
-            return len;
-        }
-
-        const attractorLength = preparePath(attractorPath);
-        const lcdmLength      = preparePath(lcdmPath);
-
-        /* ── Reset all animated elements ── */
-        function resetAnimation() {
-            attractorPath.style.transition = "none";
-            lcdmPath.style.transition      = "none";
-            attractorPath.style.strokeDashoffset = attractorLength;
-            lcdmPath.style.strokeDashoffset      = lcdmLength;
-
-            movingDot.setAttribute("cx", "80");
-            movingDot.setAttribute("cy", "117");
-
-            milestones.forEach(el  => el && el.classList.remove("show"));
-            notes.forEach(el       => el && el.classList.remove("show"));
-            guides.forEach(el      => el && el.classList.remove("show"));
-            weAreHere && weAreHere.classList.remove("show");
-            conclusion.classList.remove("show");
-        }
-
-        /* ── Animate a stroke-dashoffset path ── */
-        function animatePath(path, length, duration, delay) {
-            const startTime = performance.now() + delay;
-            function frame(now) {
-                if (now < startTime) { requestAnimationFrame(frame); return; }
-                const t        = Math.min((now - startTime) / duration, 1);
-                const eased    = easeInOutCubic(t);
-                path.style.strokeDashoffset = length * (1 - eased);
-                if (t < 1) requestAnimationFrame(frame);
-            }
-            requestAnimationFrame(frame);
-        }
-
-        /* ── Animate the moving dot along attractor path ── */
-        function animateDot(path, duration, delay) {
-            const length    = path.getTotalLength();
-            const startTime = performance.now() + delay;
-            function frame(now) {
-                if (now < startTime) { requestAnimationFrame(frame); return; }
-                const t     = Math.min((now - startTime) / duration, 1);
-                const eased = easeInOutCubic(t);
-                const pt    = path.getPointAtLength(length * eased);
-                movingDot.setAttribute("cx", pt.x);
-                movingDot.setAttribute("cy", pt.y);
-                if (t < 1) requestAnimationFrame(frame);
-            }
-            requestAnimationFrame(frame);
-        }
-
-        /* ── Helper: reveal an element after a delay ── */
-        function showLater(el, delay) {
-            setTimeout(() => { if (el) el.classList.add("show"); }, delay);
-        }
-
-        /* ── Run the full animation sequence ── */
-        function runAnimation() {
-            resetAnimation();
-
-            /* paths */
-            animatePath(attractorPath, attractorLength, 6500, 300);
-            animateDot(attractorPath,                   6500, 300);
-            animatePath(lcdmPath,      lcdmLength,      6500, 300); /* parallel from start */
-
-            /* milestone dots */
-            showLater(milestones[0], 500);
-            showLater(milestones[1], 1600);
-            showLater(milestones[2], 2500);
-            showLater(milestones[3], 3800);
-            showLater(milestones[4], 6200);
-            showLater(milestones[5], 3700); /* ΛCDM position at 13.8 Gyr */
-
-            /* "We are here" pulsing dot */
-            showLater(weAreHere, 3800);
-
-            /* annotation notes */
-            showLater(notes[0], 1100);
-            showLater(notes[1], 2300);
-            showLater(notes[2], 3700);
-            showLater(notes[3], 6100);
-
-            /* right-side reference labels */
-            showLater(guides[0], 1500);
-            showLater(guides[1], 2500);
-            showLater(guides[2], 6200);
-
-            /* concluding statement */
-            showLater(conclusion, 7600);
-        }
-
-        /* ── Trigger on scroll into view ── */
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && !started) {
-                    started = true;
-                    runAnimation();
-                }
-            });
-        }, { threshold: 0.35 });
-
-        observer.observe(svg);
-
-        /* ── Replay button ── */
-        replayBtn.addEventListener("click", function () {
-            runAnimation();
-        });
-    })();
-    </script>
 </body>
 </html>
