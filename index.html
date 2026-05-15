@@ -322,6 +322,20 @@
             overflow: hidden;
         }
 
+        /* Aspect ratios measured empirically — the SVG inside each iframe
+           scales with iframe width, and the card padding plus body padding
+           add a roughly constant overhead. Mobile screens give the padding
+           relatively more weight, so we use a taller aspect there. */
+        .figure-iframe.fig-1 { aspect-ratio: 1.14; }
+        .figure-iframe.fig-2 { aspect-ratio: 0.79; }
+        .figure-iframe.fig-3 { aspect-ratio: 1.21; }
+
+        @media (min-width: 700px) {
+            .figure-iframe.fig-1 { aspect-ratio: 1.20; }
+            .figure-iframe.fig-2 { aspect-ratio: 0.82; }
+            .figure-iframe.fig-3 { aspect-ratio: 1.30; }
+        }
+
         @media (max-width: 640px) {
             .container {
                 padding: 38px 16px 52px 16px;
@@ -976,7 +990,7 @@ document.addEventListener('DOMContentLoaded',function(){
 </script>
 </body>
 </html>
-" class="figure-iframe" style="height:290px;" scrolling="no"></iframe>
+" class="figure-iframe fig-1" scrolling="no"></iframe>
         </section>
 
 
@@ -1531,7 +1545,7 @@ document.addEventListener('DOMContentLoaded',function(){
 </script>
 </body>
 </html>
-" class="figure-iframe" style="height:410px;" scrolling="no"></iframe>
+" class="figure-iframe fig-2" scrolling="no"></iframe>
         </section>
 
 
@@ -2078,7 +2092,7 @@ document.addEventListener('DOMContentLoaded',function(){
 </script>
 </body>
 </html>
-" class="figure-iframe" style="height:275px;" scrolling="no"></iframe>
+" class="figure-iframe fig-3" scrolling="no"></iframe>
         </section>
 
         <section class="card">
